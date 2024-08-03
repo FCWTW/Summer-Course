@@ -9,7 +9,9 @@
 >
 >* ### Start and get in container
 >> docker start pytorch_container
+>>
 >> docker exec -it pytorch_container bash
+>>
 >> python /workspace/train.py
 >
 >
