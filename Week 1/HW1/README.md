@@ -13,4 +13,5 @@
 >> python /workspace/train.py
 >
 >
->* ### Result: ![result](/Images/HW1.jpg)
+>* ### Result:
+>>![result](/Images/HW1.jpg)
