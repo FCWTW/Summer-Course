@@ -4,7 +4,7 @@
 
 ---
 # Problem 2 solution:
->## 1.
+>## 1. Just Brute Force, its time complexity is O(N^3)
 
 ---
 # Problem 3 solution:

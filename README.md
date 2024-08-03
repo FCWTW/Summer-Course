@@ -1,4 +1,4 @@
-# NTUT RVL Summer COurse 2024
+# RVL Summer Course 2024
 
 ---
-![Just a cat](cat.jpg)
+![Just a cat](/Images/cat.jpg)
