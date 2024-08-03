@@ -4,7 +4,7 @@
 using namespace std;
 
 class Problem_2 {
-	public:
+    public:
 		void Problem_2_sol(string s) {
 			int size = s.size();
 			int start = 0;
