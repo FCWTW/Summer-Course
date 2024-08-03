@@ -13,10 +13,10 @@ class Problem_2 {
 			for(int i=0; i<size; i++) {
 				for(int j=i; j<size; j++) {
 					if(check(s, i, j)) {
-						if(j-i+1 > length) {
-							// update length of substring
-							length = j-i+1;
-							start = i;
+					if(j-i+1 > length) {
+						// update length of substring
+						length = j-i+1;
+						start = i;
 						}
 					}
 				}
@@ -24,7 +24,7 @@ class Problem_2 {
 
 			cout << "Output: \"";
 			for(int i=start; i<(start+length); i++)
-				cout << s[i];
+			cout << s[i];
 			cout << "\"" << endl;
 		}
 
@@ -38,15 +38,15 @@ class Problem_2 {
 			}
 
 			return true;
-    	}
+		}
 };
 
 //	test
 int main() {
-  	Problem_2 test;
+	Problem_2 test;
 	string s = "babad";
 
 	test.Problem_2_sol(s);
 
-  	return 0;
+	return 0;
 }
