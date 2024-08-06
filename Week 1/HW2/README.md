@@ -1,7 +1,8 @@
 # Problem 1 solution:
 >* ## **Method**:
 >>### use binary search twice to find the starting and ending position of a given target value.
->
+
+
 >* ## **How to run**:
 >>### 1.	Prerequisites: make sure you have g++ installed on your system.
 >>### 2.	Compilation: use the following command in terminal.
@@ -13,7 +14,10 @@
 >>./Problem_1
 >>```
 >>### 4.	**Dependencies**: This program does not require any additional libraries.
-> 
+
+
+
+
 >*	## **Example**:
 >>### Problem_1_sol的Input為int vector和指定的數字，output會直接列印出結果
 >> ![P1]{/Images/Problem_1_sol.jpg}
