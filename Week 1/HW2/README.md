@@ -16,29 +16,65 @@
 >>### 4.	**Dependencies**: This program does not require any additional libraries.
 >
 >
->
->
 >*	## **Example**:
->>### Problem_1_sol的Input為int vector和指定的數字，output會直接列印出結果
+>>### Problem_1_sol 的 Input 為 int vector 和指定的數字， output 會直接列印出結果
 >> ![P1]{/Images/Problem_1_sol.jpg}
+>
 >
 >*	## **Time complexity**:
 >>### The recursion time function of binary search is T(N)=T(N/2)+1, according to Master theorem, its time complexity is O(logN).
 >>### This solution use binary search twice, so its time complexity is also O(logN).
 
-
->### 1. Use binary search twice to find the starting and ending position of a given target value.
->### 2. 有定義好class Problem_1，其中Problem_1_sol function的Input為int vector和指定的數字，output會直接列印出結果
->### 3. The recursive time function of binary reach is T(N)=T(N/2)+1, according to Master theorem, its time complexity is O(logN). This solution use binary search twice, so its time complexity is also O(logN).
-
 ---
 # Problem 2 solution:
->### 1. Just Brute Force, use two for loop to update the longest substring.
->### 2. 有定義好class Problem_2，其中Problem_2_sol function的Input為string，output會直接列印出結果
->### 3. Time complexity is O(N^3)
+>* ## **Method**:
+>>### Just Brute Force, use two for loop to update the longest substring.
+>
+>
+>* ## **How to run**:
+>>### 1.	Prerequisites: make sure you have g++ installed on your system.
+>>### 2.	Compilation: use the following command in terminal.
+>>```bash
+>>g++ -o Problem_2 Problem_2.cpp
+>>```
+>>### 3.	**Excution**: After compiling the code, you can run with the following command.
+>>```bash
+>>./Problem_2
+>>```
+>>### 4.	**Dependencies**: This program does not require any additional libraries.
+>
+>
+>*	## **Example**:
+>>### Problem_2_sol 的 Input 為 string ， output 會直接列印出結果
+>> ![P1]{/Images/Problem_1_sol.jpg}
+>
+>
+>*	## **Time complexity**:
+>>### This solution use two for loop and one while loop, so its time complexity is O(N^3).
 
 ---
 # Problem 3 solution:
->### 1. Use "merge" of merge sort to combine two sorted array into a big array, however, we only need to combine first half of big array and the problem will be solved.
->### 2. 有定義好class Problem_3，其中Problem_3_sol function的Input為兩個int array和他們的size，output會直接列印出結果
->### 3. This solution scans the first half of combined array, so its time complexity is O(m+n).
+>* ## **Method**:
+>>### Use "merge" of merge sort to combine two sorted array into a big array, however, we only need to combine first half of big array and the problem will be solved.
+>
+>
+>* ## **How to run**:
+>>### 1.	Prerequisites: make sure you have g++ installed on your system.
+>>### 2.	Compilation: use the following command in terminal.
+>>```bash
+>>g++ -o Problem_3 Problem_3.cpp
+>>```
+>>### 3.	**Excution**: After compiling the code, you can run with the following command.
+>>```bash
+>>./Problem_3
+>>```
+>>### 4.	**Dependencies**: This program does not require any additional libraries.
+>
+>
+>*	## **Example**:
+>>### Problem_3_sol 的 Input 為兩個 int array 和他們的 size ， output 會直接列印出結果
+>> ![P1]{/Images/Problem_1_sol.jpg}
+>
+>
+>*	## **Time complexity**:
+>>### This solution scans the first half of combined array, so its time complexity is O(m+n), m and n are sizes of input array.
