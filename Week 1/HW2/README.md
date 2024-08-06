@@ -13,7 +13,7 @@
 >>```
 >> 4.	**Dependencies**: This program does not require any additional libraries.
 > 
->*	### **Example**: 有定義好class Problem_1，其中Problem_1_sol function的Input為int vector和指定的數字，output會直接列印出結果
+>*	### **Example**: Problem_1_sol的Input為int vector和指定的數字，output會直接列印出結果
 >> ![P1]{/Images/Problem_1_sol.jpg}
 >
 >*	### **Time complexity**: the recursion time function of binary search is T(N)=T(N/2)+1, according to Master theorem, its time complexity is O(logN). This solution use binary search twice, so its time complexity is also O(logN).
