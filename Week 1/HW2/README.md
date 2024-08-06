@@ -1,21 +1,23 @@
 # Problem 1 solution:
 >* ### **Method**: use binary search twice to find the starting and ending position of a given target value.
 >
->* ### How to run:
+>* ### **How to run**:
 >> 1.	Prerequisites: make sure you have g++ installed on your system.
 >> 2.	Compilation: use the following command in terminal.
 >>```bash
 >>g++ -o Problem_1 Problem_1.cpp
 >>```
->> 3.	Excution: After compiling the code, you can run with the following command.
+>> 3.	**Excution**: After compiling the code, you can run with the following command.
 >>```bash
 >>./Problem_1
 >>```
->> 4.	Dependencies: This program does not require any additional libraries.
+>> 4.	**Dependencies**: This program does not require any additional libraries.
 > 
->*	### Example: 有定義好class Problem_1，其中Problem_1_sol function的Input為int vector和指定的數字，output會直接列印出結果
+>*	### **Example**: 有定義好class Problem_1，其中Problem_1_sol function的Input為int vector和指定的數字，output會直接列印出結果
+>> ![P1]{/Images/Problem_1_sol.jpg}
 >
->*	Dependencies: This program does not require any additional libraries.
+>*	### **Time complexity**: the recursion time function of binary search is T(N)=T(N/2)+1, according to Master theorem, its time complexity is O(logN). This solution use binary search twice, so its time complexity is also O(logN).
+
 
 >### 1. Use binary search twice to find the starting and ending position of a given target value.
 >### 2. 有定義好class Problem_1，其中Problem_1_sol function的Input為int vector和指定的數字，output會直接列印出結果
