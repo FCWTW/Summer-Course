@@ -18,7 +18,7 @@
 >
 >*	## **Example**:
 >>### Problem_1_sol 的 Input 為 int vector 和指定的數字， output 會直接列印出結果
->> ![P1]{/Images/Problem_1_sol.jpg}
+>>![P1](/Images/Problem_1_sol.jpg)
 >
 >
 >*	## **Time complexity**:
@@ -46,7 +46,7 @@
 >
 >*	## **Example**:
 >>### Problem_2_sol 的 Input 為 string ， output 會直接列印出結果
->> ![P1]{/Images/Problem_1_sol.jpg}
+>> ![P2](/Images/Problem_2_sol.jpg)
 >
 >
 >*	## **Time complexity**:
@@ -73,7 +73,7 @@
 >
 >*	## **Example**:
 >>### Problem_3_sol 的 Input 為兩個 int array 和他們的 size ， output 會直接列印出結果
->> ![P1]{/Images/Problem_1_sol.jpg}
+>> ![P3](/Images/Problem_3_sol.jpg)
 >
 >
 >*	## **Time complexity**:

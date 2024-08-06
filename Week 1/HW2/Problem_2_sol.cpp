@@ -45,8 +45,10 @@ class Problem_2 {
 int main() {
     Problem_2 test;
     string s = "babad";
+    string s2 = "cbbd";
 
     test.Problem_2_sol(s);
+    test.Problem_2_sol(s2);
 
     return 0;
 }
