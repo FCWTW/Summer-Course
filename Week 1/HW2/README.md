@@ -1,21 +1,21 @@
 # Problem 1 solution:
->* <span style="font-size: 20px; color: orange;">Method</span>: use binary search twice to find the starting and ending position of a given target value.
+>* ### **Method**: use binary search twice to find the starting and ending position of a given target value.
 >
->* <span style="font-size: 20px; color: orange;">How to run:</span>:
+>* ### How to run:
 >> 1.	Prerequisites: make sure you have g++ installed on your system.
 >> 2.	Compilation: use the following command in terminal.
-```bash
-g++ -o Problem_1 Problem_1.cpp
-```
+>>```bash
+>>g++ -o Problem_1 Problem_1.cpp
+>>```
 >> 3.	Excution: After compiling the code, you can run with the following command.
-```bash
-./Problem_1
-```
+>>```bash
+>>./Problem_1
+>>```
 >> 4.	Dependencies: This program does not require any additional libraries.
 > 
->*	<span style="font-size: 20px; color: orange;">Example</span>: 有定義好class Problem_1，其中Problem_1_sol function的Input為int vector和指定的數字，output會直接列印出結果
+>*	### Example: 有定義好class Problem_1，其中Problem_1_sol function的Input為int vector和指定的數字，output會直接列印出結果
 >
->*	<span style="font-size: 20px; color: orange;">How to run:</span>
+>*	Dependencies: This program does not require any additional libraries.
 
 >### 1. Use binary search twice to find the starting and ending position of a given target value.
 >### 2. 有定義好class Problem_1，其中Problem_1_sol function的Input為int vector和指定的數字，output會直接列印出結果
