@@ -1,3 +1,4 @@
+import optuna
 import torch
 import torch.nn as nn
 import torch.optim as optim
@@ -25,7 +26,7 @@ class MyDataset(Dataset):
 
 # Define CNN model
 class Net(nn.Module):
-    def __init__(self):
+    def __init__(self, dropout_rate=0.5):
         super(Net, self).__init__()
         self.conv1 = nn.Conv2d(1, 32, kernel_size=3, stride=1, padding=1)
         self.conv2 = nn.Conv2d(32, 64, kernel_size=3, stride=1, padding=1)
@@ -33,7 +34,7 @@ class Net(nn.Module):
         self.fc1 = nn.Linear(64 * 7 * 7, 128)
         self.fc2 = nn.Linear(128, 10)
         self.relu = nn.ReLU()
-        self.dropout = nn.Dropout(p=0.5)
+        self.dropout = nn.Dropout(p=dropout_rate)
 
     def forward(self, x):
         x = self.pool(self.relu(self.conv1(x)))
@@ -45,7 +46,7 @@ class Net(nn.Module):
         return x
 
 # Training section
-def train_model(model, train_loader, val_loader, criterion, optimizer, epochs):
+def train_model(model, train_loader, val_loader, criterion, optimizer, epochs, trial):
     best_accuracy = 0.0
     for epoch in range(epochs):
         model.train()
@@ -88,12 +89,15 @@ def train_model(model, train_loader, val_loader, criterion, optimizer, epochs):
             val_loss = running_val_loss / len(val_loader.dataset)
             val_accuracy = correct_val / total_val
 
+            # Save model weights if validation accuracy is improved
             if val_accuracy > best_accuracy:
-                # Save model weights
-                torch.save(model.state_dict(), 'best.pth')
+                torch.save(model.state_dict(), f'best_model_{trial.number}.pth')
                 best_accuracy = val_accuracy
 
             print(f"Validation Loss: {val_loss:.4f}, Validation Accuracy: {val_accuracy:.4f}")
+
+    # Return the best accuracy for Optuna to maximize
+    return best_accuracy
 
 # Testing section
 def test_model(model, test_loader, criterion):
@@ -116,9 +120,28 @@ def test_model(model, test_loader, criterion):
 
     print(f'Testing Loss: {test_loss:.4f}, Testing Accuracy: {test_accuracy:.4f}')
 
+def objective(trial):
+    # Define hyperparameters
+    learning_rate = trial.suggest_loguniform('learning_rate', 1e-4, 1e-3)
+    batch_size = trial.suggest_categorical('batch_size', [64, 128])
+    dropout_rate = trial.suggest_uniform('dropout_rate', 0.1, 0.5)
 
-def main():
+    # Initialize model, loss and optimizer
+    model = Net(dropout_rate=dropout_rate).to(device)
+    criterion = nn.CrossEntropyLoss()
+    optimizer = optim.AdamW(model.parameters(), lr=learning_rate)
 
+    # Create DataLoader with current batch size
+    train_loader = DataLoader(train_data, batch_size=batch_size, shuffle=True)
+    val_loader = DataLoader(val_data, batch_size=batch_size, shuffle=True)
+    
+    # Train the model
+    best_accuracy = train_model(model, train_loader, val_loader, criterion, optimizer, 20, trial)
+
+    # Return the best accuracy as the objective to maximize
+    return best_accuracy
+
+if __name__ == '__main__':
     # Set device
     device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
     print(device)
@@ -147,21 +170,20 @@ def main():
     val_len = len(test_data) - test_len
     test_data, val_data = random_split(test_data, [test_len, val_len])
 
-    train_loader = DataLoader(train_data, batch_size=128, shuffle=True)
-    val_loader = DataLoader(val_data, batch_size=128, shuffle=True)
     test_loader = DataLoader(test_data, batch_size=128, shuffle=False)
 
-    # Initialize model, loss and optimizer
-    model = Net().to(device)
-    criterion = nn.CrossEntropyLoss()
-    optimizer = optim.AdamW(model.parameters(), weight_decay=0.001, lr=0.001)
+    # Run Optuna optimization
+    study = optuna.create_study(direction='maximize')
+    study.optimize(objective, n_trials=8)
 
-    # Train the model
-    train_model(model, train_loader, val_loader, criterion, optimizer, 20)
+    best_trial = study.best_trial
+    best_model_weights_path = f'best_model_{best_trial.number}.pth'
+    print("Parameters: ", best_trial.params)
+    print("Validation Accuracy: ", best_trial.value)
 
-    # Load the best model for testing
-    model.load_state_dict(torch.load('best.pth'))
-    test_model(model, test_loader, criterion)
-
-if __name__ == '__main__':
-    main()
+    # Initialize best model
+    best_model = Net(dropout_rate=best_trial.params['dropout_rate']).to(device)
+    best_model.load_state_dict(torch.load(best_model_weights_path))
+    
+    # Evaluate best model on the test set
+    test_model(best_model, test_loader, nn.CrossEntropyLoss())

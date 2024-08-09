@@ -6,11 +6,6 @@
 >
 >   ![path](/Images/W2_path.jpg)
 >
+> - ## Result:
 >
-> - ## Train result:
->   
->   ![result1](/Images/W2_result1.jpg)
->
-> - ## Test result:
->   
->   ![result2](/Images/W2_result2.jpg)
+>   ![result](/Images/W2_Result.jpg)
