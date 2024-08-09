@@ -170,8 +170,6 @@ if __name__ == '__main__':
     val_len = len(test_data) - test_len
     test_data, val_data = random_split(test_data, [test_len, val_len])
 
-    test_loader = DataLoader(test_data, batch_size=128, shuffle=False)
-
     # Run Optuna optimization
     study = optuna.create_study(direction='maximize')
     study.optimize(objective, n_trials=8)
@@ -186,4 +184,5 @@ if __name__ == '__main__':
     best_model.load_state_dict(torch.load(best_model_weights_path))
     
     # Evaluate best model on the test set
+    test_loader = DataLoader(test_data, batch_size=best_trial.params['batch_size'], shuffle=False)
     test_model(best_model, test_loader, nn.CrossEntropyLoss())
