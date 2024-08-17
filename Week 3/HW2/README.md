@@ -35,42 +35,7 @@
 > wget https://raw.githubusercontent.com/mavlink/mavros/master/mavros/scripts/install_geographiclib_datasets.sh
 > sudo bash ./install_geographiclib_datasets.sh
 > ```
->
-> ### 3. Install ROS python tools
-> ```bash
-> sudo apt-get install python-catkin-tools python-rosinstall-generator -y
-> ```
->
-> ### 4. Create a catkin workspace at ~/catkin_ws If you don't have
-> ```bash
-> mkdir -p ~/catkin_ws/src
-> cd ~/catkin_ws
-> catkin init
-> wstool init src
-> ```
->
-> ### 5. Install MAVLink
-> ```bash
-> rosinstall_generator --rosdistro noetic mavlink | tee /tmp/mavros.rosinstall
-> ```
->
-> ### 6. Install MAVROS released/stable version
-> ```bash
-> rosinstall_generator --upstream mavros | tee -a /tmp/mavros.rosinstall
-> ```
->
-> ### 7. Create workspace & deps
-> ```bash
-> wstool merge -t src /tmp/mavros.rosinstall
-> wstool update -t src -j4
-> rosdep install --from-paths src --ignore-src -y
-> ```
->
-> ### 8. Build source
-> ```bash
-> catkin build
-> source devel/setup.bash
-> ```
+> 
 ---
 ## MAVROS Offboard control example (Python)
 > ### 1. Creating the ROS Package
