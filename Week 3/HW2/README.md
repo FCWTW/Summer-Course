@@ -60,7 +60,7 @@
 > ```
 >> open offb_node.py file and paste the following code:
 >> ```python
->> #! /usr/bin/env python
+>> #! /usr/bin/env python3
 >>
 >> import rospy
 >> from geometry_msgs.msg import PoseStamped
@@ -146,7 +146,7 @@
 >> ```XML
 >> <?xml version="1.0"?>
 >> <launch>
->> 	 <!-- Include the MAVROS node with SITL and Gazebo -->
+>>  <!-- Include the MAVROS node with SITL and Gazebo -->
 >>	 <include file="$(find px4)/launch/mavros_posix_sitl.launch">
 >>	 </include>
 >>
