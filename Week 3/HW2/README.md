@@ -15,7 +15,7 @@
 > ```bash
 > cd PX4-Autopilot
 > git submodule update --init --recursive
-> DONT_RUN=1 make px4_sitl_default gazebo
+> DONT_RUN=1 make px4_sitl_default gazebo-classic
 > ```
 ---
 ## Install catkin_tools
@@ -178,5 +178,5 @@
 >    3. <a href="https://catkin-tools.readthedocs.io/en/latest/installing.html">Installing catkin_tools</a><br>
 >    4. <a href="https://docs.px4.io/main/en/ros/mavros_offboard_python.html">MAVROS Offboard control example (Python)</a><br>
 >    5. <a href="https://github.com/PX4/PX4-Autopilot/issues/14762">ERROR: cannot launch node of type [px4/px4]</a><br>
->    5. <a href="https://discuss.px4.io/t/unable-to-run-mavros-and-px4-with-rlexception-error/32925">Unable to run MAVROS and PX4 with RLException error</a><br>
+>    6. <a href="https://discuss.px4.io/t/unable-to-run-mavros-and-px4-with-rlexception-error/32925">Unable to run MAVROS and PX4 with RLException error</a><br>
 > </details>
