@@ -113,26 +113,26 @@
 >>     offb_set_mode.custom_mode = 'OFFBOARD'
 >>
 >>     arm_cmd = CommandBoolRequest()
->>    arm_cmd.value = True
+>>     arm_cmd.value = True
 >>
->>    last_req = rospy.Time.now()
+>>     last_req = rospy.Time.now()
 >>
->>    while(not rospy.is_shutdown()):
->>        if(current_state.mode != "OFFBOARD" and (rospy.Time.now() - last_req) > rospy.Duration(5.0)):
->>            if(set_mode_client.call(offb_set_mode).mode_sent == True):
->>                rospy.loginfo("OFFBOARD enabled")
+>>     while(not rospy.is_shutdown()):
+>>         if(current_state.mode != "OFFBOARD" and (rospy.Time.now() - last_req) > rospy.Duration(5.0)):
+>>             if(set_mode_client.call(offb_set_mode).mode_sent == True):
+>>                 rospy.loginfo("OFFBOARD enabled")
 >>
->>            last_req = rospy.Time.now()
->>        else:
->>            if(not current_state.armed and (rospy.Time.now() - last_req) > rospy.Duration(5.0)):
->>                if(arming_client.call(arm_cmd).success == True):
->>                    rospy.loginfo("Vehicle armed")
+>>             last_req = rospy.Time.now()
+>>         else:
+>>             if(not current_state.armed and (rospy.Time.now() - last_req) > rospy.Duration(5.0)):
+>>                 if(arming_client.call(arm_cmd).success == True):
+>>                     rospy.loginfo("Vehicle armed")
 >>
->>                last_req = rospy.Time.now()
+>>                 last_req = rospy.Time.now()
 >>
->>        local_pos_pub.publish(pose)
+>>         local_pos_pub.publish(pose)
 >>
->>        rate.sleep()
+>>         rate.sleep()
 >> ```
 >
 > ### 3. Creating the ROS launch file
@@ -160,6 +160,7 @@
 >> add these lines at the end of .bashrc file:
 >>
 >> ```bash
+>> source ~/catkin_ws/devel/setup.bash
 >> source ~/PX4-Autopilot/Tools/simulation/gazebo-classic/setup_gazebo.bash ~/PX4-Autopilot ~/PX4-Autopilot/build/px4_sitl_default
 >> export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:~/PX4-Autopilot
 >> export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:~/PX4-Autopilot/Tools/simulation/gazebo-classic/sitl_gazebo-classic
