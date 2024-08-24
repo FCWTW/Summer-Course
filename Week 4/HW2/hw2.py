@@ -3,8 +3,8 @@ import numpy as np
 import os
 
 #   set your images' path
-path1 = 'Week 4/HW2/image/matching1.jpg'    # Right
-path2 = 'Week 4/HW2/image/matching2.jpg'    # Left
+path1 = 'Week 4/HW2/image/right.jpg'    # Right
+path2 = 'Week 4/HW2/image/left.jpg'    # Left
 
 
 def imageShow(string, *args):
