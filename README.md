@@ -1,4 +1,4 @@
-# RVL Summer Course 2024
+# Summer Course 2024
 
 ---
 ![Just a cat](/Images/cat.jpg)
