@@ -22,7 +22,9 @@
 > ```bash
 > sudo sh -c 'echo "deb http://packages.ros.org/ros/ubuntu `lsb_release -sc` main" > /etc/apt/sources.list.d/ros-latest.list'
 > wget http://packages.ros.org/ros.key -O - | sudo apt-key add -
-> ```
+> sudo apt-get update
+> sudo apt-get install python3-catkin-tools
+>  ```
 ---
 ## Install MAVROS
 > ### 1. Use version of ROS noetic on Ubuntu 20.04
@@ -38,7 +40,15 @@
 > 
 ---
 ## MAVROS Offboard control example (Python)
-> ### 1. Creating the ROS Package
+> ### 1. Build work space
+> ```bash
+> mkdir -p ~/catkin_ws/src
+> cd ~/catkin_ws/
+> catkin build
+> source ~/catkin_ws/devel/setup.bash
+> ```
+> 
+> ### 2. Creating the ROS Package
 > ```bash
 > roscd  # Should cd into ~/catkin_ws/devel
 > cd ..
@@ -53,7 +63,7 @@
 > cd scripts
 > ```
 >
-> ### 2. Using sample code
+> ### 3. Using sample code
 > ```bash
 > touch offb_node.py
 > chmod +x offb_node.py
@@ -135,7 +145,7 @@
 >>         rate.sleep()
 >> ```
 >
-> ### 3. Creating the ROS launch file
+> ### 4. Creating the ROS launch file
 > ```bash
 > roscd offboard_py
 > mkdir launch
@@ -156,7 +166,7 @@
 >>```
 >>
 >
-> ### 4. Little change in ~/.bashrc file
+> ### 5. Little change in ~/.bashrc file
 >> add these lines at the end of .bashrc file:
 >>
 >> ```bash
@@ -166,8 +176,13 @@
 >> export ROS_PACKAGE_PATH=$ROS_PACKAGE_PATH:~/PX4-Autopilot/Tools/simulation/gazebo-classic/sitl_gazebo-classic
 >> export GAZEBO_MODEL_PATH=${GAZEBO_MODEL_PATH}:~/PX4-Autopilot/Tools/simulation/gazebo-classic/sitl_gazebo-classic/models
 >> ```
+>>
+>> run the following command after editing .bashrc
+>> ```bash
+>> source ~/.bashrc
+>> ```
 >
-> ### 5. Launching your script
+> ### 6. Launching your script
 > ```bash
 > roslaunch offboard_py start_offb.launch
 > ```
