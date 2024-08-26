@@ -67,14 +67,15 @@ if __name__ == '__main__':
     #   matching features with knn match
     bf = cv2.BFMatcher()
     matches = bf.knnMatch(descriptors1, descriptors2, k=2)
-    print(matches[0])
+    # print(matches[0])
 
     #   apply ratio test to select good matches
     good_matches = []
     for m in matches:
         if m[0].distance < 0.75 * m[1].distance:
             good_matches.append(m)
-    print(good_matches[0])
+    # print(good_matches[0])
+    
     image_match = cv2.drawMatchesKnn(image1, keypoints1, image2, keypoints2, good_matches, None, flags=2)
     result = imageShow("Feature Matching", image_match)
     cv2.imwrite(os.path.join(directory+'/feature_matching.jpg'), result)

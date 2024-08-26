@@ -1,6 +1,6 @@
 # OpenCV practice: Image Stitching
 
-## How to run:
+## How to run on VScode:
 > ### 1. Prerequisites:
 > * make sure you have [Anaconda](https://www.anaconda.com/download) installed on your system.
 >
