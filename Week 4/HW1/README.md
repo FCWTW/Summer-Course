@@ -75,9 +75,9 @@
 > >
 > >             ii. Calculate external energy (Image Energy)
 > >
-> >             iii. Calculate total Energy at pi:
+> >             iii. Normalize energy
 > >
-> >             iv. Normalize energy
+> >             iv. Calculate total Energy at pi
 > >
 > >             v. check minimum E_total(pi) to find best position, and update the position of pi
 > >
