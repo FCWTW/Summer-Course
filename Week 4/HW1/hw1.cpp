@@ -8,9 +8,9 @@ using namespace cv;
 #define MAX_ITERATION 500
 
 vector<Point> points;
+vector<Point> previousPoints;
 bool converged = false;
 Mat original_img, imgCopy;
-
 
 //  draw line between points
 void drawPoints(Mat img) {
@@ -20,7 +20,7 @@ void drawPoints(Mat img) {
     }
     cout << "draw"<< endl;
     imshow("Active Contour", img);
-    waitKey(500);
+    waitKey(100);
 }
 
 
@@ -40,10 +40,10 @@ void ACTIVE_CONTOUR(Mat &dx, Mat &dy) {
     int centerx = win.width >> 1;
     int centery = win.height >> 1;
 
-    float *Econt = new float[neighbors];
-	float *Ecurv = new float[neighbors];
-	float *Eimg = new float[neighbors];
-	float *E = new float[neighbors];
+    vector<float> Econt(neighbors);
+    vector<float> Ecurv(neighbors);
+    vector<float> Eimg(neighbors);
+    vector<float> E(neighbors);
 
     int movecount = 0;
     float averagedistance = 0;
@@ -86,14 +86,11 @@ void ACTIVE_CONTOUR(Mat &dx, Mat &dy) {
                 minEcont = min(minEcont, E_cont);
 
                 //  calculate E curv
-                Point next_diff;
-                if(i == 0)
-                    next_diff = points[points.size()-1] - 2*Point(nx, ny) + points[i+1];
-                else if(i == points.size()-1)
-                    next_diff = points[i-1] - 2*Point(nx, ny) + points[0];
-                else
-                    next_diff = points[i-1] - 2*Point(nx, ny) + points[i+1];
-                float E_curv = norm(next_diff - 2 * prev_diff);
+                Point prev_point = (i == 0) ? points[points.size() - 1] : points[i - 1];
+                Point next_point = (i == points.size() - 1) ? points[0] : points[i + 1];
+                Point current_point(nx, ny);
+                Point curvature_vector = prev_point - 2 * current_point + next_point;
+                float E_curv = norm(curvature_vector);
                 Ecurv[(j + centery) * win.width + k + centerx] = E_curv;
                 maxEcurv = max(maxEcurv, E_curv);
                 minEcurv = min(minEcurv, E_curv);
@@ -155,14 +152,8 @@ void ACTIVE_CONTOUR(Mat &dx, Mat &dy) {
     converged = (movecount  == 0) ? true : false;
 
     //  draw new lines
-    cout << "Update points" << endl;
     imgCopy = original_img.clone();
     drawPoints(imgCopy);
-
-    delete[] Econt;
-	delete[] Ecurv;
-	delete[] Eimg;
-	delete[] E;
 }
 
 
@@ -179,8 +170,9 @@ static void onMouse(int event, int x, int y, int, void* imgptr){
 
 
 int main() {
-    //  Read the image
+    //  read the image
     original_img = imread("img.jpg", IMREAD_COLOR);
+
     imgCopy = original_img.clone();
 
     if (original_img.empty()) {
@@ -188,19 +180,19 @@ int main() {
         return -1;
     }
 
-    //  Convert the image to Grayscale
+    //  convert the image to Grayscale
     Mat gray_img;
     cvtColor(original_img, gray_img, COLOR_BGR2GRAY);
     
-    //  Denoising with Gaussian blur
+    //  denoising with Gaussian blur
     Mat blurred_img;
     GaussianBlur(gray_img, blurred_img, Size(5, 5), 2);
     
-    //  Calculate the gradient by using Sobel
+    //  calculate the gradient by using Sobel
     Mat gradX, gradY;
     Sobel(blurred_img, gradX, CV_32F, 1, 0, 3);
     Sobel(blurred_img, gradY, CV_32F, 0, 1, 3);
-    
+
     //  innitialize position of points
     namedWindow("Active Contour", 0);
     resizeWindow("Active Contour", 700, 700);
@@ -212,6 +204,7 @@ int main() {
 
     for (int i = 0; i < MAX_ITERATION; ++i) {
         ACTIVE_CONTOUR(gradX, gradY);
+        cout << "Update points in turn " << i << endl;
         if(converged) break;
     }
     
