@@ -199,7 +199,7 @@ int main() {
     imshow("Active Contour", imgCopy);
     setMouseCallback("Active Contour", onMouse, &imgCopy);
     cout << "Enter '0' to continue..." << endl;
-    waitKey(0);
+    while(waitKey(0)!='0');
     drawPoints(imgCopy);
 
     for (int i = 0; i < MAX_ITERATION; ++i) {
@@ -209,6 +209,6 @@ int main() {
     }
     
     cout << "Finish !" << endl << "Enter '0' to exit" << endl;
-    waitKey(0);
+    while(waitKey(0)!='0');
     return 0;
 }
